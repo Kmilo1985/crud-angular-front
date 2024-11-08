@@ -1,0 +1,8 @@
+{
+    "/api": {
+      "target": "http://localhost:80/api_php/modelo/api-base.php", 
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    }
+  }
