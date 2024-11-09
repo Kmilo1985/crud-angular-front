@@ -1,8 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { UserService } from './user.service';
-import { UserModel } from './userModel';
-import { HeaderService } from './header.service';
+import { UserService } from './service/user.service';
+import { UserModel } from './userModel/userModel';
+import { HeaderService } from './header-service/header.service';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -115,6 +116,12 @@ export class AppComponent implements OnInit {
         console.log('Datos recibidos:', data);
         this.form.reset();
         this.loadUsers();  // Recargar la lista de usuarios
+        Swal.fire({
+          title: '¡Proceso completado!',
+          text: 'El usuario ha sido procesado con éxito.',
+          icon: 'success',
+          confirmButtonText: 'Aceptar'
+        });
       },
       error => {
         console.error('Error al recibir datos:', error);
@@ -125,10 +132,33 @@ export class AppComponent implements OnInit {
 
 
   deleteUser(id: number) {
-    this.userService.deleteUser(id).subscribe((response) => {
-      console.log('Usuario eliminado:', response);
-      this.loadUsers();  // Recargar la lista de usuarios
+
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: "No podrás revertir esta acción",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, ¡borrar!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.userService.deleteUser(id).subscribe((response) => {
+          console.log('Usuario eliminado:', response);
+          this.loadUsers();  // Recargar la lista de usuarios
+          Swal.fire({
+            title: '¡Proceso completado!',
+            text: 'El usuario ha sido elminado con éxito.',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          });
+        });
+        // Lógica para ejecutar si el usuario confirma
+        
+      }
     });
+    
+    
   }
 
 
@@ -143,6 +173,12 @@ export class AppComponent implements OnInit {
       console.log('Usuario Actualizado:', response);
       this.form.reset();
       this.loadUsers();  // Recargar la lista de usuarios
+      Swal.fire({
+        title: '¡Proceso completado!',
+        text: 'El usuario ha sido Actualizado con éxito.',
+        icon: 'success',
+        confirmButtonText: 'Aceptar'
+      });
     });
   }
 
