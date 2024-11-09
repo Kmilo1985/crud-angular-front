@@ -1,6 +1,6 @@
 {
     "/api": {
-      "target": "http://localhost:80/api_php/modelo/api-base.php", 
+      "target": "http://localhost/crud-php-angular/modelo/api-base.php", 
       "secure": false,
       "changeOrigin": true,
       "logLevel": "debug"
