@@ -41,18 +41,12 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.headerService.addHeader('Authorization', 'Bearer tu-token');
-    this.headerService.addHeader('Custom-Header', 'valor-personalizado');
-
-    // Si se necesita eliminar una cabecera específica
-    if (this.headerService.hasHeader('Custom-Header')) {
-      this.headerService.removeHeader('Custom-Header');
-    }
+ 
 
     // Hacer una petición HTTP con las cabeceras inyectadas
-    this.userService.getUsers().subscribe(response => {
-      console.log(response);
-    });
+    // this.userService.getUsers().subscribe(response => {
+    //   console.log(response);
+    // });
 
     // Limpiar todas las cabeceras después de la solicitud si es necesario
   //  this.headerService.clearHeaders();
@@ -64,10 +58,10 @@ export class AppComponent implements OnInit {
 
   loadUsers() {
 
-    this.userService.getUsers().subscribe((data) => {
-      this.users = data;
-      console.log(this.users, 'SERVICIO')
-    });
+    // this.userService.getUsers().subscribe((data) => {
+    //   this.users = data;
+    //   console.log(this.users, 'SERVICIO')
+    // });
   }
 
   public procesarUsuario(filtro:string){
@@ -77,7 +71,7 @@ export class AppComponent implements OnInit {
     }
     if('actualizar' == filtro){
       this.estadoProceso = 'actualizar';
-        this.updateUser();
+        // this.updateUser();
     }
 
 
@@ -111,76 +105,76 @@ export class AppComponent implements OnInit {
       email:this.email?.value
     }
 
-    this.userService.createUser(this.userNew).subscribe(
-      data => {
-        console.log('Datos recibidos:', data);
-        this.form.reset();
-        this.loadUsers();  // Recargar la lista de usuarios
-        Swal.fire({
-          title: '¡Proceso completado!',
-          text: 'El usuario ha sido procesado con éxito.',
-          icon: 'success',
-          confirmButtonText: 'Aceptar'
-        });
-      },
-      error => {
-        console.error('Error al recibir datos:', error);
-      }
-    );
+    // this.userService.createUser(this.userNew).subscribe(
+    //   data => {
+    //     console.log('Datos recibidos:', data);
+    //     this.form.reset();
+    //     this.loadUsers();  // Recargar la lista de usuarios
+    //     Swal.fire({
+    //       title: '¡Proceso completado!',
+    //       text: 'El usuario ha sido procesado con éxito.',
+    //       icon: 'success',
+    //       confirmButtonText: 'Aceptar'
+    //     });
+    //   },
+    //   error => {
+    //     console.error('Error al recibir datos:', error);
+    //   }
+    // );
   }
 
 
 
-  deleteUser(id: number) {
+  // deleteUser(id: number) {
 
-    Swal.fire({
-      title: '¿Estás seguro?',
-      text: "No podrás revertir esta acción",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Sí, ¡borrar!'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.userService.deleteUser(id).subscribe((response) => {
-          console.log('Usuario eliminado:', response);
-          this.loadUsers();  // Recargar la lista de usuarios
-          Swal.fire({
-            title: '¡Proceso completado!',
-            text: 'El usuario ha sido elminado con éxito.',
-            icon: 'success',
-            confirmButtonText: 'Aceptar'
-          });
-        });
-        // Lógica para ejecutar si el usuario confirma
+  //   Swal.fire({
+  //     title: '¿Estás seguro?',
+  //     text: "No podrás revertir esta acción",
+  //     icon: 'warning',
+  //     showCancelButton: true,
+  //     confirmButtonColor: '#3085d6',
+  //     cancelButtonColor: '#d33',
+  //     confirmButtonText: 'Sí, ¡borrar!'
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       this.userService.deleteUser(id).subscribe((response) => {
+  //         console.log('Usuario eliminado:', response);
+  //         this.loadUsers();  // Recargar la lista de usuarios
+  //         Swal.fire({
+  //           title: '¡Proceso completado!',
+  //           text: 'El usuario ha sido elminado con éxito.',
+  //           icon: 'success',
+  //           confirmButtonText: 'Aceptar'
+  //         });
+  //       });
+  //       // Lógica para ejecutar si el usuario confirma
         
-      }
-    });
+  //     }
+  //   });
     
     
-  }
+  // }
 
 
 
-  public updateUser(){
-    this.userNew = {
-      id:this.id?.value,
-      name:this.name?.value,
-      email:this.email?.value
-    }
-    this.userService.updateUser(this.userNew.id,this.userNew).subscribe((response) => {
-      console.log('Usuario Actualizado:', response);
-      this.form.reset();
-      this.loadUsers();  // Recargar la lista de usuarios
-      Swal.fire({
-        title: '¡Proceso completado!',
-        text: 'El usuario ha sido Actualizado con éxito.',
-        icon: 'success',
-        confirmButtonText: 'Aceptar'
-      });
-    });
-  }
+  // public updateUser(){
+  //   this.userNew = {
+  //     id:this.id?.value,
+  //     name:this.name?.value,
+  //     email:this.email?.value
+  //   }
+  //   this.userService.updateUser(this.userNew.id,this.userNew).subscribe((response) => {
+  //     console.log('Usuario Actualizado:', response);
+  //     this.form.reset();
+  //     this.loadUsers();  // Recargar la lista de usuarios
+  //     Swal.fire({
+  //       title: '¡Proceso completado!',
+  //       text: 'El usuario ha sido Actualizado con éxito.',
+  //       icon: 'success',
+  //       confirmButtonText: 'Aceptar'
+  //     });
+  //   });
+  // }
 
 
   get id (){

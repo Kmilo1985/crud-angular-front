@@ -1,0 +1,63 @@
+
+
+<!-- {{ users | json }} -->
+
+
+<div class="container">
+    <h2>CRUD - NODE</h2>
+    <br>
+    <br>
+    <div class="d-flex justify-content-end">
+      <!-- <button class="btn btn-primary"  data-bs-target="#exampleModalToggle" data-bs-toggle="modal" (click)="procesarUsuario('crear')">Crear registro</button>  -->
+  
+    </div>
+    <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Correo</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr *ngFor="let user of users"> -->
+        <!-- <th scope="row">{{ user.id}}</th> -->
+        <!-- <td>{{ user.name}}</td> -->
+        <!-- <td>{{ user.email}}</td> -->
+        <td>
+          <!-- <button type="button" class="btn btn-outline-primary" style="margin: 2px" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" (click)="editarUsuario(user)">Ver</button> -->
+          <!-- <button type="button" class="btn btn-outline-warning" style="margin: 2px" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" (click)="editarUsuario(user)">Actualizar</button> -->
+          <!-- <button type="button" class="btn btn-outline-primary" style="margin: 2px" (click)="deleteUser(user.id)">Eliminar</button> -->
+        </td>
+      <!-- </tr> -->
+     
+    </tbody>
+  </table>
+  </div>
+  
+  
+  
+  
+  <!-- Modal Crear Actualizar  -->
+  
+  
+  <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalToggleLabel">User</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+       
+        </div>
+        <div class="modal-footer">
+         
+          <!-- <button class="btn btn-warning" *ngIf="estadoProceso == 'crear'" data-bs-dismiss="modal" (click)="createUser()">Procesar</button>
+          <button class="btn btn-primary" *ngIf="estadoProceso == 'actualizar'" data-bs-dismiss="modal" (click)="procesarUsuario('actualizar')">Procesar</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  

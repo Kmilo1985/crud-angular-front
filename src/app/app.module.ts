@@ -8,11 +8,17 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { LoginComponent } from './login/login.component';
+import { TaskService } from './service/task.service';
+import { AuthGuard } from './guards/auth.guard';
+import { TaskComponent } from './task/task.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    TaskComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +29,10 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     SweetAlert2Module.forRoot() // Importa SweetAlert2 
   ],
   providers: [
-     UserService
+    UserService,
+    TaskService,
+    AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }
     ],
   bootstrap: [AppComponent
 
